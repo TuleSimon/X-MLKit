@@ -32,6 +32,7 @@ fun DependencyHandler.androidTest(){
   debugImplementation(Dependencies.ANDROIDX_COMPOSE_UI_MANIFEST_TEST)
 }
 
+//compose ui dependecies
 fun DependencyHandler.androidCompose(){
   implementation(Dependencies.ANDROID_CORE_KTS)
   implementation(Dependencies.ANDROID_LIFECYCLE_RUNTIME_KTX)
