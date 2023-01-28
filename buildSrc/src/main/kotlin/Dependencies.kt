@@ -23,6 +23,7 @@ object Dependencies {
 
 }
 
+//android test dependencies
 fun DependencyHandler.androidTest(){
   testImplementation(Dependencies.JUNIT)
   androidTestImplementation(Dependencies.ANDROIDX_JUNIT_TEST)
