@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+import Versions.COMPILE_SDK_VERSION
+import Versions.MAX_SDK_VERSION
+import Versions.MIN_SDK_VERSION
 import com.simon.x_mlkit.androidCompose
 import com.simon.x_mlkit.androidTest
 
@@ -14,8 +17,8 @@ android {
 
     defaultConfig {
         applicationId = "com.simon.x_mlkit"
-        minSdk = 21
-        targetSdk = 33
+        minSdk = MIN_SDK_VERSION
+        targetSdk = MAX_SDK_VERSION
         versionCode = 1
         versionName = "1.0"
 
