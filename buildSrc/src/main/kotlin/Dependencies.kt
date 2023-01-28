@@ -33,12 +33,12 @@ fun DependencyHandler.androidTest(){
 }
 
 fun DependencyHandler.androidCompose(){
-  implementation(De)
-  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-  implementation("androidx.activity:activity-compose:1.6.1")
-  implementation("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")
-  implementation("androidx.compose.ui:ui-tooling-preview:${rootProject.extra["compose_version"]}")
-  implementation("androidx.compose.material3:material3:1.1.0-alpha04")
+  implementation(Dependencies.ANDROID_CORE_KTS)
+  implementation(Dependencies.ANDROID_LIFECYCLE_RUNTIME_KTX)
+  implementation(Dependencies.ANDROIDX_ACTIVITY_COMPOSE)
+  implementation(Dependencies.ANDROIDX_COMPOSE_UI)
+  implementation(Dependencies.ANDROIDX_COMPOSE_UI_TOOLING_PREVIEW)
+  implementation(Dependencies.ANDROIDX_COMPOSE_MATERIAL3)
 }
 
 fun DependencyHandler.implementation(depName: String) {
