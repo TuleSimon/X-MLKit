@@ -58,7 +58,7 @@ android {
 
 dependencies {
 
-
+    implementation(project(":facialRecognition"))
     androidCompose()
 
     androidTest()
