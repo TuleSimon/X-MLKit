@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.simon.x_mlkit"
-    compileSdk = 33
+    compileSdk = COMPILE_SDK_VERSION
 
     defaultConfig {
         applicationId = "com.simon.x_mlkit"
