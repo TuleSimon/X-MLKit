@@ -1,5 +1,7 @@
 package com.simon.x_mlkit
 
+import org.gradle.api.artifacts.dsl.DependencyHandler
+
 
 object Dependencies {
 
@@ -20,4 +22,6 @@ object Dependencies {
 
 }
 
-fun DependencyHandler
+fun DependencyHandler.Firebase(){
+  add(Firebase)
+}
