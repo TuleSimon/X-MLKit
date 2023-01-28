@@ -1,6 +1,7 @@
 package com.simon.x_mlkit
 
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.extra
 
 
 object Dependencies {
@@ -22,6 +23,46 @@ object Dependencies {
 
 }
 
-fun DependencyHandler.Firebase(){
-  add(Firebase)
+fun DependencyHandler.androidTest(){
+  testImplementation(Dependencies.JUNIT)
+  androidTestImplementation(Dependencies.ANDROIDX_JUNIT_TEST)
+  androidTestImplementation(Dependencies.ESPRESSO_CORE)
+  androidTestImplementation(Dependencies.ANDROIDX_COMPOSE_UI_TEST_JUNIT4)
+  debugImplementation(Dependencies.ANDROIDX_COMPOSE_UI_TOOLING)
+  debugImplementation(Dependencies.ANDROIDX_COMPOSE_UI_MANIFEST_TEST)
+}
+
+fun DependencyHandler.androidCompose(){
+  implementation(De)
+  implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+  implementation("androidx.activity:activity-compose:1.6.1")
+  implementation("androidx.compose.ui:ui:${rootProject.extra["compose_version"]}")
+  implementation("androidx.compose.ui:ui-tooling-preview:${rootProject.extra["compose_version"]}")
+  implementation("androidx.compose.material3:material3:1.1.0-alpha04")
+}
+
+fun DependencyHandler.implementation(depName: String) {
+  add("implementation", depName)
+}
+
+private fun DependencyHandler.kapt(depName: String) {
+  add("kapt", depName)
+}
+
+private fun DependencyHandler.compileOnly(depName: String) {
+  add("compileOnly", depName)
+}
+
+private fun DependencyHandler.api(depName: String) {
+  add("api", depName)
+}
+
+private fun DependencyHandler.debugImplementation(depName: String) {
+  add("debugImplementation", depName)
+}
+
+private fun DependencyHandler.androidTestImplementation(depName: String) {
+  add("androidTestImplementation", depName)
+}private fun DependencyHandler.testImplementation(depName: String) {
+  add("testImplementation", depName)
 }
