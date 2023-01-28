@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":facialRecognition")
+
+
 pluginManagement {
     repositories {
         google()
@@ -15,4 +18,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "X-MLKIT"
-include(":app")
+include(":app",":facialRecognition")
