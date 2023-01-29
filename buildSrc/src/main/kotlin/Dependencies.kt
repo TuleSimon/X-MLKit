@@ -23,7 +23,7 @@ object Dependencies {
 
   const val HUAWEI_COMPUTER_VISION_OCR = "com.huawei.hms:ml-computer-vision-ocr:${Versions.HUAWEI_VERSION}"
   const val HUAWEI_COMPUTER_VISION_OCR_LATIN = "com.huawei.hms:ml-computer-vision-ocr-latin-model:${Versions.HUAWEI_VERSION}"
-  const val HUAWEI_COMPUTER_VISION_OCR_JK = "com.huawei.hms:ml-computer-vision-ocr-latin-model:${Versions.HUAWEI_VERSION}"
+  const val HUAWEI_COMPUTER_VISION_OCR_JK = "com.huawei.hms:ml-computer-vision-ocr-jk-model:${Versions.HUAWEI_VERSION}"
   const val HUAWEI_COMPUTER_VISION_OCR_CN = "com.huawei.hms:ml-computer-vision-ocr-cn-model:${Versions.HUAWEI_VERSION}"
 
   dependencies{
