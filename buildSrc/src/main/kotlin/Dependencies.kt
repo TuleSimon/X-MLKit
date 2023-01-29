@@ -43,6 +43,14 @@ fun DependencyHandler.androidTest(){
   debugImplementation(Dependencies.ANDROIDX_COMPOSE_UI_MANIFEST_TEST)
 }
 
+//huawei
+fun DependencyHandler.Huawei(){
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_JK)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_LATIN)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_CN)
+}
+
 //compose ui dependecies
 fun DependencyHandler.androidCompose(){
   implementation(Dependencies.ANDROID_CORE_KTS)

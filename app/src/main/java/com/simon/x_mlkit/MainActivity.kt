@@ -15,6 +15,9 @@ import com.simon.x_mlkit.ui.theme.XMLKITTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        MLApplication.getInstance().setAccessToken("your access token");
+
         setContent {
             XMLKITTheme {
                 // A surface container using the 'background' color from the theme
@@ -28,6 +31,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
 
 @Composable
 fun Greeting(name: String) {
