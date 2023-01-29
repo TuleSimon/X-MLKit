@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id plugin: 'com.huawei.agconnect'
 }
 
 android {
