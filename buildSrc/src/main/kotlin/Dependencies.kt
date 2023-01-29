@@ -27,18 +27,10 @@ object Dependencies {
   const val HUAWEI_COMPUTER_VISION_OCR_LATIN = "com.huawei.hms:ml-computer-vision-ocr-latin-model:${Versions.HUAWEI_VERSION}"
   // Import the Japanese and Korean model package.
   const val HUAWEI_COMPUTER_VISION_OCR_JK = "com.huawei.hms:ml-computer-vision-ocr-jk-model:${Versions.HUAWEI_VERSION}"
+  // Import the Chinese and English model package.
   const val HUAWEI_COMPUTER_VISION_OCR_CN = "com.huawei.hms:ml-computer-vision-ocr-cn-model:${Versions.HUAWEI_VERSION}"
 
-  dependencies{
-// Import the base SDK.
-    implementation 'com.huawei.hms:ml-computer-vision-ocr:3.8.0.303'
-    // Import the Latin-based language model package.
-    implementation 'com.huawei.hms:ml-computer-vision-ocr-latin-model:3.8.0.303'
-    // Import the Japanese and Korean model package.
-    implementation 'com.huawei.hms:ml-computer-vision-ocr-jk-model:3.8.0.303'
-    // Import the Chinese and English model package.
-    implementation 'com.huawei.hms:ml-computer-vision-ocr-cn-model:3.8.0.303'
-  }
+
 }
 
 //android test dependencies
