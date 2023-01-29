@@ -21,8 +21,10 @@ object Dependencies {
   const val ANDROIDX_COMPOSE_UI_TOOLING ="androidx.compose.ui:ui-tooling:${Versions.COMPOSE_VERSION}"
   const val ANDROIDX_COMPOSE_UI_MANIFEST_TEST ="androidx.compose.ui:ui-test-manifest:${Versions.COMPOSE_VERSION}"
 
-  const val HUAWEI_COMPUTER_VISION_OCR = "com.huawei.hms:ml-computer-vision-ocr:3.8.0.303"
-  const val HUAWEI_COMPUTER_VISION_OCR_LATIN = "com.huawei.hms:ml-computer-vision-ocr-latin-model:3.8.0.303"
+  const val HUAWEI_COMPUTER_VISION_OCR = "com.huawei.hms:ml-computer-vision-ocr:${Versions.HUAWEI_VERSION}"
+  const val HUAWEI_COMPUTER_VISION_OCR_LATIN = "com.huawei.hms:ml-computer-vision-ocr-latin-model:${Versions.HUAWEI_VERSION}"
+  const val HUAWEI_COMPUTER_VISION_OCR_JK = "com.huawei.hms:ml-computer-vision-ocr-latin-model:${Versions.HUAWEI_VERSION}"
+  const val HUAWEI_COMPUTER_VISION_OCR_CN = "com.huawei.hms:ml-computer-vision-ocr-cn-model:${Versions.HUAWEI_VERSION}"
 
   dependencies{
 // Import the base SDK.

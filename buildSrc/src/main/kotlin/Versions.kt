@@ -4,4 +4,6 @@ object Versions {
   const val MAX_SDK_VERSION = 33
   const val COMPILE_SDK_VERSION = 33
   const val MIN_SDK_VERSION = 21
+
+  const val HUAWEI_VERSION = "3.8.0.303"
 }
