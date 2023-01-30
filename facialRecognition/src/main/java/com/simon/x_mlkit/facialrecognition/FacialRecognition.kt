@@ -17,9 +17,13 @@ class FacialRecognition {
         MLApplication.getInstance().apiKey = apiKey
     }
 
-    suspend fun isFaceDetected(bitmap: Bitmap):Deferred<Boolean> = CoroutineScope(Dispatchers.IO).async{
+    /**
+     * Returns
+     * /
+     */
+    suspend fun isFaceDetectedAsync(bitmap: Bitmap):Deferred<FacesDetectedResult?> = CoroutineScope(Dispatchers.IO).async{
 
-        val isFaceDetected = CompletableDeferred<Boolean>()
+        val isFaceDetected = CompletableDeferred<FacesDetectedResult?>()
 
         val faceAnalyzer = getFaceAnalyzer()
         val frame = MLFrame.fromBitmap(bitmap)
@@ -27,14 +31,21 @@ class FacialRecognition {
 
         task.addOnSuccessListener {
             // Detection success.
+            if(it.isNullOrEmpty()){
+                isFaceDetected.complete(FacesDetectedResult(0))
+                return@addOnSuccessListener
+            }
+            isFaceDetected.complete(FacesDetectedResult(it.size))
             return@addOnSuccessListener
         }.addOnFailureListener {
             // Detection failure.
+            isFaceDetected.complete(FacesDetectedResult(0,it))
         }
         try {
                 faceAnalyzer.stop()
         } catch (e: IOException) {
             // Exception handling.
+            e.printStackTrace()
         }
 
         return@async isFaceDetected.await()
@@ -56,3 +67,5 @@ class FacialRecognition {
     }
 
 }
+
+data class FacesDetectedResult(val noOfFaces: Int, val exception:Throwable?=null)
