@@ -1,3 +1,5 @@
+import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES
+import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES_ANDROID
 import com.simon.x_mlkit.Huawei
 import com.simon.x_mlkit.HuaweiFaceModels
 
@@ -40,4 +42,6 @@ android {
 dependencies {
     Huawei()
     HuaweiFaceModels()
+    implementation(KOTLINX_COROUTINES)
+    implementation(KOTLINX_COROUTINES_ANDROID)
 }

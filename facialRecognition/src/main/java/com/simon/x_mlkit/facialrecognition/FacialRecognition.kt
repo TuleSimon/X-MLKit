@@ -21,6 +21,8 @@ class FacialRecognition {
         val frame = MLFrame.fromBitmap(bitmap)
         val task = faceAnalyzer.asyncAnalyseFrame(frame)
 
+
+
         task.addOnSuccessListener {
             // Detection success.
         }.addOnFailureListener {

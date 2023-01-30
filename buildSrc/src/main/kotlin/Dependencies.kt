@@ -42,6 +42,15 @@ object Dependencies {
   // Import the 3D face detection model package.
   const val HUAWEI_COMPUTER_VISION_FACE_VISION_FACE_3D_MODEL = "com.huawei.hms:ml-computer-vision-face-3d-model:${Versions.HUAWEI_FACE_SDK_VERSION}"
 
+
+
+  //COROUTINES
+  const val KOTLINX_COROUTINES = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.COROUTINE_VERSION}"
+  const val KOTLINX_COROUTINES_ANDROID = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINE_VERSION}"
+  const val KOTLINX_COROUTINES_ = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.COROUTINE_VERSION}"
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
+
+
 }
 
 //android test dependencies
