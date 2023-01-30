@@ -1,3 +1,5 @@
+import com.simon.x_mlkit.Huawei
+
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
@@ -9,5 +11,5 @@ java {
 }
 
 dependencies {
-
+    Huawei()
 }

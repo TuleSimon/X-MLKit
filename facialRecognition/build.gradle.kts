@@ -1,3 +1,5 @@
+import com.simon.x_mlkit.Huawei
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -35,5 +37,5 @@ android {
 }
 
 dependencies {
-
+    Huawei()
 }
