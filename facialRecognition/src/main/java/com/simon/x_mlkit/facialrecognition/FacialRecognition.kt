@@ -18,7 +18,8 @@ class FacialRecognition {
     }
 
     /**
-     * Returns
+     * Returns whether a face was detected,
+     * @param bitmap the bitmap to scan for faces
      * /
      */
     suspend fun isFaceDetectedAsync(bitmap: Bitmap):Deferred<FacesDetectedResult?> = CoroutineScope(Dispatchers.IO).async{
