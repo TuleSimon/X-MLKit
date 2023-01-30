@@ -6,6 +6,7 @@ class FacialRecognition {
 
     fun setUpAuth(accessToken:String){
         MLApplication.getInstance().setAccessToken(accessToken);
+        MLApplication.getInstance().setUserRegion(MLApplication.REGION_DR_UNKNOWN);
     }
 
 }
