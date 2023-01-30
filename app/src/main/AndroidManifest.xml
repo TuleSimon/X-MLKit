@@ -25,9 +25,6 @@
 
         <meta-data
             android:name="com.huawei.hms.ml.DEPENDENCY"
-            android:value= "ocr"/>
-        <meta-data
-            android:name="com.huawei.hms.ml.DEPENDENCY"
             android:value= "face"/>
 
         <provider

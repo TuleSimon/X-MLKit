@@ -40,7 +40,7 @@ object Dependencies {
       "com.huawei.hms:ml-computer-vision-face:${Versions.HUAWEI_FACE_SDK_VERSION}"
 
   const val HUAWEI_COMPUTER_VISION_FACE_SHAPE_POINT_MODEL =
-      "com.huawei.hms:ml-computer-vision-face-shape-point-mode:${Versions.HUAWEI_FACE_SDK_VERSION}"
+      "com.huawei.hms:ml-computer-vision-face-shape-point-model:${Versions.HUAWEI_FACE_SDK_VERSION}"
   // Import the facial expression detection model package.
   const val HUAWEI_COMPUTER_VISION_FACE_EMOTION_MODEL =
       "com.huawei.hms:ml-computer-vision-face-emotion-model:${Versions.HUAWEI_FACE_SDK_VERSION}"
