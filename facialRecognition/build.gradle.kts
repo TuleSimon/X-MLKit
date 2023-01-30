@@ -1,3 +1,4 @@
+import com.simon.x_mlkit.Dependencies.COIL
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES_ANDROID
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES_PLAY_SERVICES
@@ -46,4 +47,5 @@ dependencies {
     implementation(KOTLINX_COROUTINES)
     implementation(KOTLINX_COROUTINES_ANDROID)
     implementation(KOTLINX_COROUTINES_PLAY_SERVICES)
+    implementation(COIL)
 }

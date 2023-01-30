@@ -29,6 +29,16 @@
         <meta-data
             android:name="com.huawei.hms.ml.DEPENDENCY"
             android:value= "face"/>
+
+        <provider
+            android:name=".ComposeFileProvider"
+            android:authorities="com.simon.x_mlkit.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
     </application>
 
 </manifest>

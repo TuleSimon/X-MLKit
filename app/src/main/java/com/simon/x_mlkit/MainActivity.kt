@@ -1,48 +1,114 @@
 package com.simon.x_mlkit
 
+import android.content.Context
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.content.FileProvider
+import com.simon.x_mlkit.facialrecognition.FacialRecognition
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
+import java.io.File
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+
+    setContent {
+      val imageUri = remember { mutableStateOf<Uri?>(null) }
+
+      XMLKITTheme {
+        val cameraLauncher =
+            rememberLauncherForActivityResult(contract = ActivityResultContracts.TakePicture()) {
+                success ->
+            }
 
 
+        val context = LocalContext.current
 
-        setContent {
-            XMLKITTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+        LaunchedEffect(key1 = imageUri.value){
+            imageUri.value?.let {
+                val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
+                val result = FacialRecognition().isFaceDetectedAsync(bitmap).await()
             }
         }
+        // A surface container using the 'background' color from the theme
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+
+          Column(){
+
+              AsyncImage(
+                  model = imageUri,
+                  modifier = Modifier.fillMaxWidth(),
+                  contentDescription = "Selected image",
+              )
+
+          }
+
+          Box(Modifier.fillMaxSize()) {
+            Button(modifier = Modifier.align(Alignment.Center),
+                onClick = {
+                  val uri = ComposeFileProvider.getImageUri(context)
+                  imageUri.value = uri
+                  cameraLauncher.launch(imageUri.value)
+                }) {
+                  Text(text = "Click Here to Take Picture")
+                }
+          }
+        }
+      }
     }
+  }
 }
 
-
+class ComposeFileProvider : FileProvider(R.xml.filepaths) {
+  companion object {
+    fun getImageUri(context: Context): Uri {
+      val directory = File(context.cacheDir, "images")
+      directory.mkdirs()
+      val file =
+          File.createTempFile(
+              "selected_image_",
+              ".jpg",
+              directory,
+          )
+      val authority = context.packageName + ".fileprovider"
+      return getUriForFile(
+          context,
+          authority,
+          file,
+      )
+    }
+  }
+}
 
 @Composable
 fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+  Text(text = "Hello $name!")
 }
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    XMLKITTheme {
-        Greeting("Android")
-    }
+  XMLKITTheme { Greeting("Android") }
 }
