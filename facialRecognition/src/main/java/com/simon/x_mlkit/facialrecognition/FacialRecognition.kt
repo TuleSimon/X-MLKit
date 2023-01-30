@@ -6,6 +6,8 @@ import com.huawei.hms.mlsdk.common.MLApplication
 import com.huawei.hms.mlsdk.common.MLFrame
 import com.huawei.hms.mlsdk.face.MLFaceAnalyzer
 import com.huawei.hms.mlsdk.face.MLFaceAnalyzerSetting
+import kotlinx.coroutines.*
+import java.io.IOException
 
 class FacialRecognition {
 
@@ -15,20 +17,27 @@ class FacialRecognition {
         MLApplication.getInstance().apiKey = apiKey
     }
 
-    suspend fun analyzeImage(bitmap: Bitmap){
+    suspend fun isFaceDetected(bitmap: Bitmap):Deferred<Boolean> = CoroutineScope(Dispatchers.IO).async{
+
+        val isFaceDetected = CompletableDeferred<Boolean>()
 
         val faceAnalyzer = getFaceAnalyzer()
         val frame = MLFrame.fromBitmap(bitmap)
         val task = faceAnalyzer.asyncAnalyseFrame(frame)
 
-
-
         task.addOnSuccessListener {
             // Detection success.
+            return@addOnSuccessListener
         }.addOnFailureListener {
             // Detection failure.
         }
+        try {
+                faceAnalyzer.stop()
+        } catch (e: IOException) {
+            // Exception handling.
+        }
 
+        return@async isFaceDetected.await()
     }
 
     private fun getFaceAnalyzer(tracingAllowed:Boolean=false):MLFaceAnalyzer{
