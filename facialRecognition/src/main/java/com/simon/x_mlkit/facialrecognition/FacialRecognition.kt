@@ -4,9 +4,10 @@ import com.huawei.hms.mlsdk.common.MLApplication
 
 class FacialRecognition {
 
-    fun setUpAuth(accessToken:String){
+    fun setUpAuth(accessToken:String, apiKey:String){
         MLApplication.getInstance().setAccessToken(accessToken);
         MLApplication.getInstance().setUserRegion(MLApplication.REGION_DR_UNKNOWN);
+        MLApplication.getInstance().apiKey = apiKey
     }
 
 }

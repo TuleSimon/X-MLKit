@@ -31,6 +31,22 @@ object Dependencies {
   const val HUAWEI_COMPUTER_VISION_OCR_CN = "com.huawei.hms:ml-computer-vision-ocr-cn-model:${Versions.HUAWEI_VERSION}"
 
 
+  // Import the contour and key point detection model package.
+  const val HUAWEI_COMPUTER_VISION_FACE_SHAPE_POINT_MODEL = "com.huawei.hms:ml-computer-vision-face-shape-point-mode:${Versions.HUAWEI_FACE_SDK_VERSION}"
+  const val HUAWEI_COMPUTER_VISION_FACE_SHAPE_POINT_MODEL = "com.huawei.hms:ml-computer-vision-face-shape-point-mode:${Versions.HUAWEI_FACE_SDK_VERSION}"
+  // Import the base SDK.
+  implementation 'com.huawei.hms:ml-computer-vision-face:3.7.0.301'
+
+  implementation 'com.huawei.hms:ml-computer-vision-face-shape-point-model:3.7.0.301'
+// Import the facial expression detection model package.
+  implementation 'com.huawei.hms:ml-computer-vision-face-emotion-model:3.7.0.301'
+// Import the facial feature detection model package.
+  implementation 'com.huawei.hms:ml-computer-vision-face-feature-model:3.7.0.301'
+  // Import the 3D face detection model package.
+  implementation 'com.huawei.hms:ml-computer-vision-face-3d-model:3.7.0.301'
+  com.huawei.hms:ml-computer-vision-face-shape-point-model:3.7.0.301
+
+
 }
 
 //android test dependencies
