@@ -10,9 +10,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -23,9 +21,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
+import coil.compose.AsyncImage
+import com.simon.x_mlkit.facialrecognition.FacesDetectedResult
 import com.simon.x_mlkit.facialrecognition.FacialRecognition
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
@@ -36,6 +38,9 @@ class MainActivity : ComponentActivity() {
 
     setContent {
       val imageUri = remember { mutableStateOf<Uri?>(null) }
+        val result = remember {
+            mutableStateOf<FacesDetectedResult?>(null)
+        }
 
       XMLKITTheme {
         val cameraLauncher =
@@ -49,24 +54,30 @@ class MainActivity : ComponentActivity() {
         LaunchedEffect(key1 = imageUri.value){
             imageUri.value?.let {
                 val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
-                val result = FacialRecognition().isFaceDetectedAsync(bitmap).await()
+                result.value = FacialRecognition().isFaceDetectedAsync(bitmap).await()
+
             }
         }
         // A surface container using the 'background' color from the theme
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
 
-          Column(){
+          Column(verticalArrangement = Arrangement.spacedBy(20.dp),
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier.fillMaxSize()){
 
+            if(imageUri.value!=null){
               AsyncImage(
                   model = imageUri,
-                  modifier = Modifier.fillMaxWidth(),
+                  modifier = Modifier.fillMaxWidth().fillMaxHeight(0.7f),
+                  contentScale = ContentScale.Fit,
                   contentDescription = "Selected image",
               )
 
-          }
+                Text(text = " $result.value?.noOfFaces.toString() faces detected")
+            }
 
-          Box(Modifier.fillMaxSize()) {
-            Button(modifier = Modifier.align(Alignment.Center),
+            Button(modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(20.dp),
                 onClick = {
                   val uri = ComposeFileProvider.getImageUri(context)
                   imageUri.value = uri
@@ -74,7 +85,6 @@ class MainActivity : ComponentActivity() {
                 }) {
                   Text(text = "Click Here to Take Picture")
                 }
-          }
         }
       }
     }

@@ -60,7 +60,7 @@ object Dependencies {
       "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1"
 
   // COIL
-  const val COIL = "io.coil-kt:coil:2.2.2"
+  const val COIL_COMPOSE = "io.coil-kt:coil-compose:2.2.2"
 }
 
 // android test dependencies

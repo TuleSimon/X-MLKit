@@ -3,7 +3,7 @@
 import Versions.COMPILE_SDK_VERSION
 import Versions.MAX_SDK_VERSION
 import Versions.MIN_SDK_VERSION
-import com.simon.x_mlkit.Huawei
+import com.simon.x_mlkit.Dependencies.COIL_COMPOSE
 import com.simon.x_mlkit.androidCompose
 import com.simon.x_mlkit.androidTest
 
@@ -63,5 +63,6 @@ dependencies {
     androidCompose()
     androidTest()
 
+    implementation(COIL_COMPOSE)
 
 }
