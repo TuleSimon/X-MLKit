@@ -18,7 +18,14 @@ class FacialRecognition {
     suspend fun analyzeImage(bitmap: Bitmap){
 
         val faceAnalyzer = getFaceAnalyzer()
-        var frame = MLFrame.fromBitmap(bitmap)
+        val frame = MLFrame.fromBitmap(bitmap)
+        val task = faceAnalyzer.asyncAnalyseFrame(frame)
+
+        task.addOnSuccessListener {
+            // Detection success.
+        }.addOnFailureListener {
+            // Detection failure.
+        }
 
     }
 
