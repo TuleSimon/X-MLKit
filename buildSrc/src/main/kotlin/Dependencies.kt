@@ -62,6 +62,15 @@ fun DependencyHandler.Huawei(){
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_CN)
 }
 
+//huaweiFaceModels
+fun DependencyHandler.HuaweiFaceModels(){
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_FACE_)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_FACE_EMOTION_MODEL)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_FACE_FEATURE_MODEL)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_FACE_VISION_FACE_3D_MODEL)
+  implementation(Dependencies.HUAWEI_COMPUTER_VISION_FACE_SHAPE_POINT_MODEL)
+}
+
 //compose ui dependecies
 fun DependencyHandler.androidCompose(){
   implementation(Dependencies.ANDROID_CORE_KTS)

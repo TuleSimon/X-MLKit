@@ -1,4 +1,5 @@
 import com.simon.x_mlkit.Huawei
+import com.simon.x_mlkit.HuaweiFaceModels
 
 plugins {
     id("com.android.library")
@@ -38,4 +39,5 @@ android {
 
 dependencies {
     Huawei()
+    HuaweiFaceModels()
 }
