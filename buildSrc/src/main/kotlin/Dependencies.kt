@@ -66,13 +66,13 @@ object Dependencies {
     const val  MLKIT_FACE_DETECTION = "com.google.mlkit:face-detection:16.1.5"
 
   //CAMERAX
-  implementation "androidx.camera:camera-core:${camerax_version}"
-  implementation "androidx.camera:camera-camera2:${camerax_version}"
-  implementation "androidx.camera:camera-lifecycle:${camerax_version}"
-  implementation "androidx.camera:camera-video:${camerax_version}"
 
-  implementation "androidx.camera:camera-view:${camerax_version}"
-  implementation "androidx.camera:camera-extensions:${camerax_version}"
+  const val CAMERA_CORE = "androidx.camera:camera-core:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_CAMERA2 = "androidx.camera:camera-camera2:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_LIFECYCLE = "androidx.camera:camera-lifecycle:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_VIDEO = "androidx.camera:camera-video:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_VIEW = "androidx.camera:camera-view:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_EXTENSIONS = "androidx.camera:camera-extensions:${Versions.CAMERAX_VERSION}"
 }
 
 // android test dependencies
@@ -91,6 +91,17 @@ fun DependencyHandler.Huawei() {
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_JK)
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_LATIN)
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_CN)
+}
+
+
+// huawei
+fun DependencyHandler.Camerax() {
+  implementation(Dependencies.CAMERA_CORE)
+  implementation(Dependencies.CAMERA_CAMERA2)
+  implementation(Dependencies.CAMERA_EXTENSIONS)
+  implementation(Dependencies.CAMERA_VIDEO)
+  implementation(Dependencies.CAMERA_VIEW)
+  implementation(Dependencies.CAMERA_LIFECYCLE)
 }
 
 // huaweiFaceModels
