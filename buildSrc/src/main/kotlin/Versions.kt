@@ -13,5 +13,5 @@ object Versions {
   const val CAMERAX_VERSION = "1.1.0-beta01"
 
   //
-  const val "0.29.1"
+  const val ACCOMPANIST_PERMISSION_VERSION = "0.29.1-alpha"
 }
