@@ -53,7 +53,10 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()) {
 
                         val state = requestCameraPermission()
-                        LaunchedEffect(true) { state.launchPermissionRequest() }
+
+                        LaunchedEffect(true) {
+                            state.launchPermissionRequest()
+                        }
 
                         if (state.status.isGranted) {
 
