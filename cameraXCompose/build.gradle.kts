@@ -1,6 +1,7 @@
 @file:Suppress("UnstableApiUsage")
 
 import com.simon.x_mlkit.Camerax
+import com.simon.x_mlkit.Dependencies.ACCOMPANIST_PERMISSIONS
 import com.simon.x_mlkit.androidCompose
 import com.simon.x_mlkit.androidTest
 
@@ -50,4 +51,5 @@ dependencies {
     androidTest()
     Camerax()
     implementation(ACCOMPANIST_PERMISSIONS)
+
 }
