@@ -49,4 +49,5 @@ dependencies {
     androidCompose()
     androidTest()
     Camerax()
+    implem
 }

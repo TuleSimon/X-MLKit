@@ -73,6 +73,11 @@ object Dependencies {
   const val CAMERA_VIDEO = "androidx.camera:camera-video:${Versions.CAMERAX_VERSION}"
   const val CAMERA_VIEW = "androidx.camera:camera-view:${Versions.CAMERAX_VERSION}"
   const val CAMERA_EXTENSIONS = "androidx.camera:camera-extensions:${Versions.CAMERAX_VERSION}"
+
+
+  //ACCOMPANIST
+  const val ACCOMPANIST_PERMISSIONS =  "com.google.accompanist:accompanist-permissions:${Versions.ACCOMPANIST_PERMISSION_VERSION}"
+
 }
 
 // android test dependencies
