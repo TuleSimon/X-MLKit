@@ -61,6 +61,9 @@ object Dependencies {
 
   // COIL
   const val COIL_COMPOSE = "io.coil-kt:coil-compose:2.2.2"
+
+    //MLKIT
+    const val  MLKIT_FACE_DETECTION = "com.google.mlkit:face-detection:16.1.5"
 }
 
 // android test dependencies
