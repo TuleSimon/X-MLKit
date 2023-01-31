@@ -8,11 +8,11 @@ import com.google.accompanist.permissions.rememberPermissionState
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun requestCameraPermission():PermissionState{
+internal fun requestCameraPermission():PermissionState{
     val cameraPermissionState = rememberPermissionState(
         android.Manifest.permission.CAMERA
     )
-    LaunchedEffect(){
+    LaunchedEffect(true){
         cameraPermissionState.launchPermissionRequest()
     }
     return cameraPermissionState
