@@ -26,67 +26,70 @@ import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
 class MainActivity : ComponentActivity() {
-  @OptIn(ExperimentalPermissionsApi::class)
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+    @OptIn(ExperimentalPermissionsApi::class)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    setContent {
-      val succes = remember { mutableStateOf(false) }
-      val imageUri = remember { mutableStateOf<Uri?>(null) }
+        setContent {
+            val succes = remember { mutableStateOf(false) }
+            val imageUri = remember { mutableStateOf<Uri?>(null) }
 
-      XMLKITTheme {
-        val context = LocalContext.current
+            XMLKITTheme {
+                val context = LocalContext.current
 
-        LaunchedEffect(key1 = succes.value) {
-          if (succes.value) {
-            imageUri.value?.let {
-              val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
-              bitmap?.let {}
+                LaunchedEffect(key1 = succes.value) {
+                    if (succes.value) {
+                        imageUri.value?.let {
+                            val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
+                            bitmap?.let {}
+                        }
+                    }
+                }
+                // A surface container using the 'background' color from the theme
+                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    Column(
+                        verticalArrangement = Arrangement.spacedBy(20.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxSize()) {
+
+                        val state = requestCameraPermission()
+                        LaunchedEffect(true) { state.launchPermissionRequest() }
+
+                        if (state.status.isGranted) {
+
+                        }
+                    }
+                }
             }
-          }
         }
-        // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          Column(
-              verticalArrangement = Arrangement.spacedBy(20.dp),
-              horizontalAlignment = Alignment.CenterHorizontally,
-              modifier = Modifier.fillMaxSize()) {
-                val state = requestCameraPermission()
-                LaunchedEffect(true) { state.launchPermissionRequest() }
-
-                if (state.status.isGranted) {}
-              }
-        }
-      }
     }
-  }
 }
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun requestCameraPermission(): PermissionState {
-  val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
+    val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
 
-  return cameraPermissionState
+    return cameraPermissionState
 }
 
 class ComposeFileProvider : FileProvider(R.xml.filepaths) {
-  companion object {
-    fun getImageUri(context: Context): Uri {
-      val directory = File(context.cacheDir, "images")
-      directory.mkdirs()
-      val file =
-          File.createTempFile(
-              "selected_image_",
-              ".jpg",
-              directory,
-          )
-      val authority = context.packageName + ".fileprovider"
-      return getUriForFile(
-          context,
-          authority,
-          file,
-      )
+    companion object {
+        fun getImageUri(context: Context): Uri {
+            val directory = File(context.cacheDir, "images")
+            directory.mkdirs()
+            val file =
+                File.createTempFile(
+                    "selected_image_",
+                    ".jpg",
+                    directory,
+                )
+            val authority = context.packageName + ".fileprovider"
+            return getUriForFile(
+                context,
+                authority,
+                file,
+            )
+        }
     }
-  }
 }
