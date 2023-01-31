@@ -12,7 +12,7 @@ import com.google.accompanist.permissions.PermissionState
 import com.simon.cameraxcompose.states.requestCameraPermission
 
 @Composable
-internal fun cameraPreview(modifier: Modifier) {
+internal fun CameraPreview(modifier: Modifier) {
   AndroidView(
       modifier = modifier,
       factory = { context ->

@@ -60,6 +60,7 @@ android {
 dependencies {
 
     implementation(project(":facialRecognition"))
+    implementation(project(":cameraXCompose"))
     androidCompose()
     androidTest()
 

@@ -38,11 +38,7 @@ class MainActivity : ComponentActivity() {
       val result = remember { mutableStateOf<FacesDetectedResult?>(null) }
 
       XMLKITTheme {
-        val cameraLauncher =
-            rememberLauncherForActivityResult(contract = ActivityResultContracts.TakePicture()) {
-                success ->
-              succes.value = success
-            }
+
 
         val context = LocalContext.current
 
@@ -60,6 +56,9 @@ class MainActivity : ComponentActivity() {
               verticalArrangement = Arrangement.spacedBy(20.dp),
               horizontalAlignment = Alignment.CenterHorizontally,
               modifier = Modifier.fillMaxSize()) {
+
+              CameraPreview()
+
                 if (imageUri.value != null && succes.value) {
                   AsyncImage(
                       model = imageUri.value,

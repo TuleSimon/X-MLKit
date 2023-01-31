@@ -24,4 +24,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "X-MLKIT"
-include(":app",":facialRecognition")
+include(":app",":facialRecognition",":cameraXCompose")
