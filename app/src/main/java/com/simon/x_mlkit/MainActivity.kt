@@ -7,27 +7,21 @@ import android.provider.MediaStore
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
-import coil.compose.AsyncImage
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import com.simon.x_mlkit.facialrecognition.FacesDetectedResult
-import com.simon.x_mlkit.facialrecognition.FacialRecognition
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
@@ -47,9 +41,7 @@ class MainActivity : ComponentActivity() {
           if (succes.value) {
             imageUri.value?.let {
               val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
-              bitmap?.let {
-
-              }
+              bitmap?.let {}
             }
           }
         }
@@ -59,35 +51,10 @@ class MainActivity : ComponentActivity() {
               verticalArrangement = Arrangement.spacedBy(20.dp),
               horizontalAlignment = Alignment.CenterHorizontally,
               modifier = Modifier.fillMaxSize()) {
+                val state = requestCameraPermission()
+                LaunchedEffect(true) { state.launchPermissionRequest() }
 
-              val state = requestCameraPermission()
-              LaunchedEffect(true){
-                  state.launchPermissionRequest()
-              }
-
-              if(state.status.isGranted){
-
-              }
-
-                if (imageUri.value != null && succes.value) {
-                  AsyncImage(
-                      model = imageUri.value,
-                      modifier = Modifier.fillMaxWidth().fillMaxHeight(0.7f),
-                      contentScale = ContentScale.Fit,
-                      contentDescription = "Selected image",
-                  )
-
-                }
-
-                Button(
-                    modifier = Modifier.fillMaxWidth(),
-                    contentPadding = PaddingValues(20.dp),
-                    onClick = {
-                      val uri = ComposeFileProvider.getImageUri(context)
-                      imageUri.value = uri
-                    }) {
-                      Text(text = "Click Here to Take Picture")
-                    }
+                if (state.status.isGranted) {}
               }
         }
       }
