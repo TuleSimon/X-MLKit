@@ -7,6 +7,8 @@ import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionState
 import com.simon.cameraxcompose.states.requestCameraPermission
 
 @Composable
@@ -26,8 +28,10 @@ internal fun cameraPreview(modifier: Modifier) {
   )
 }
 
-fun requestPermission(){
-    requestCameraPermission()
+@OptIn(ExperimentalPermissionsApi::class)
+@Composable
+fun requestPermission():PermissionState{
+    return requestCameraPermission()
 }
 
     private val REQUIRED_PERMISSIONS =
