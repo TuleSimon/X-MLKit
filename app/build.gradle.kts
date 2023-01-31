@@ -63,7 +63,7 @@ dependencies {
     implementation(project(":cameraXCompose"))
     androidCompose()
     androidTest()
-
+    implementation(ACCOMPANIST_PERMISSIONS)
     implementation(COIL_COMPOSE)
 
 }
