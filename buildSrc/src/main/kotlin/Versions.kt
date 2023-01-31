@@ -11,4 +11,7 @@ object Versions {
 
   //camerax
   const val CAMERAX_VERSION = "1.1.0-beta01"
+
+  //
+  const val "0.29.1"
 }
