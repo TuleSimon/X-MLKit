@@ -22,20 +22,23 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
-import com.simon.cameraxcompose.requestPermission
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.PermissionState
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.x_mlkit.facialrecognition.FacesDetectedResult
 import com.simon.x_mlkit.facialrecognition.FacialRecognition
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
 class MainActivity : ComponentActivity() {
+  @OptIn(ExperimentalPermissionsApi::class)
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
     setContent {
       val succes = remember { mutableStateOf(false) }
       val imageUri = remember { mutableStateOf<Uri?>(null) }
-      val result = remember { mutableStateOf<FacesDetectedResult?>(null) }
 
       XMLKITTheme {
         val context = LocalContext.current
@@ -44,7 +47,9 @@ class MainActivity : ComponentActivity() {
           if (succes.value) {
             imageUri.value?.let {
               val bitmap = MediaStore.Images.Media.getBitmap(this@MainActivity.contentResolver, it)
-              bitmap?.let { result.value = FacialRecognition().isFaceDetectedAsync(bitmap).await() }
+              bitmap?.let {
+
+              }
             }
           }
         }
@@ -55,7 +60,14 @@ class MainActivity : ComponentActivity() {
               horizontalAlignment = Alignment.CenterHorizontally,
               modifier = Modifier.fillMaxSize()) {
 
+              val state = requestCameraPermission()
+              LaunchedEffect(true){
+                  state.launchPermissionRequest()
+              }
 
+              if(state.status.isGranted){
+
+              }
 
                 if (imageUri.value != null && succes.value) {
                   AsyncImage(
@@ -65,7 +77,6 @@ class MainActivity : ComponentActivity() {
                       contentDescription = "Selected image",
                   )
 
-                  Text(text = " ${result.value?.noOfFaces.toString()} faces detected")
                 }
 
                 Button(
@@ -74,7 +85,6 @@ class MainActivity : ComponentActivity() {
                     onClick = {
                       val uri = ComposeFileProvider.getImageUri(context)
                       imageUri.value = uri
-                      cameraLauncher.launch(imageUri.value)
                     }) {
                       Text(text = "Click Here to Take Picture")
                     }
@@ -85,15 +95,12 @@ class MainActivity : ComponentActivity() {
   }
 }
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun requestCameraPermission():PermissionState{
-    val cameraPermissionState = rememberPermissionState(
-        android.Manifest.permission.CAMERA
-    )
-    LaunchedEffect(true){
-        cameraPermissionState.launchPermissionRequest()
-    }
-    return cameraPermissionState
+fun requestCameraPermission(): PermissionState {
+  val cameraPermissionState = rememberPermissionState(android.Manifest.permission.CAMERA)
+
+  return cameraPermissionState
 }
 
 class ComposeFileProvider : FileProvider(R.xml.filepaths) {
