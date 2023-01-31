@@ -50,6 +50,5 @@ dependencies {
     androidCompose()
     androidTest()
     Camerax()
-    implementation(ACCOMPANIST_PERMISSIONS)
 
 }

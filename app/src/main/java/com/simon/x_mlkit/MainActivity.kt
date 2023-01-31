@@ -5,14 +5,13 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import coil.compose.AsyncImage
+import com.simon.cameraxcompose.requestPermission
 import com.simon.x_mlkit.facialrecognition.FacesDetectedResult
 import com.simon.x_mlkit.facialrecognition.FacialRecognition
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
@@ -38,8 +38,6 @@ class MainActivity : ComponentActivity() {
       val result = remember { mutableStateOf<FacesDetectedResult?>(null) }
 
       XMLKITTheme {
-
-
         val context = LocalContext.current
 
         LaunchedEffect(key1 = succes.value) {
@@ -57,7 +55,7 @@ class MainActivity : ComponentActivity() {
               horizontalAlignment = Alignment.CenterHorizontally,
               modifier = Modifier.fillMaxSize()) {
 
-              CameraPreview()
+
 
                 if (imageUri.value != null && succes.value) {
                   AsyncImage(
@@ -85,6 +83,17 @@ class MainActivity : ComponentActivity() {
       }
     }
   }
+}
+
+@Composable
+fun requestCameraPermission():PermissionState{
+    val cameraPermissionState = rememberPermissionState(
+        android.Manifest.permission.CAMERA
+    )
+    LaunchedEffect(true){
+        cameraPermissionState.launchPermissionRequest()
+    }
+    return cameraPermissionState
 }
 
 class ComposeFileProvider : FileProvider(R.xml.filepaths) {
