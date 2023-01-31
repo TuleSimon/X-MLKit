@@ -1,3 +1,6 @@
+@file:Suppress("UnstableApiUsage")
+
+import com.simon.x_mlkit.Camerax
 import com.simon.x_mlkit.androidCompose
 import com.simon.x_mlkit.androidTest
 
@@ -8,11 +11,11 @@ plugins {
 
 android {
     namespace = "com.simon.cameraxcompose"
-    compileSdk = 33
+    compileSdk = Versions.COMPILE_SDK_VERSION
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+        minSdk = Versions.MIN_SDK_VERSION
+        targetSdk = Versions.MAX_SDK_VERSION
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -31,6 +34,12 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.COMPOSE_VERSION
+    }
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -39,5 +48,5 @@ android {
 dependencies {
     androidCompose()
     androidTest()
-    camer
+    Camerax()
 }
