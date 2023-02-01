@@ -22,6 +22,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import com.simon.cameraxcompose.CameraPreview
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
@@ -29,14 +30,11 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             val succes = remember { mutableStateOf(false) }
             val imageUri = remember { mutableStateOf<Uri?>(null) }
 
             XMLKITTheme {
-                val context = LocalContext.current
-
                 LaunchedEffect(key1 = succes.value) {
                     if (succes.value) {
                         imageUri.value?.let {
@@ -53,10 +51,13 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize()) {
 
                         val state = requestCameraPermission()
-                        LaunchedEffect(true) { state.launchPermissionRequest() }
+
+                        LaunchedEffect(true) {
+                            state.launchPermissionRequest()
+                        }
 
                         if (state.status.isGranted) {
-
+                            CameraPreview(modifier = Modifier.fillMaxSize(),this@MainActivity)
                         }
                     }
                 }
