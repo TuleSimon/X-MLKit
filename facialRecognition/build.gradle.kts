@@ -2,6 +2,7 @@ import com.simon.x_mlkit.Dependencies.COIL_COMPOSE
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES_ANDROID
 import com.simon.x_mlkit.Dependencies.KOTLINX_COROUTINES_PLAY_SERVICES
+import com.simon.x_mlkit.Dependencies.MLKIT_FACE_DETECTION
 import com.simon.x_mlkit.Huawei
 import com.simon.x_mlkit.HuaweiFaceModels
 
@@ -42,17 +43,7 @@ android {
 }
 
 dependencies {
-    Huawei()
-//    // Import the base SDK.
-//    implementation("com.huawei.hms:ml-computer-vision-face:3.7.0.301")
-//// Import the contour and key point detection model package.
-//    implementation("com.huawei.hms:ml-computer-vision-face-shape-point-model:3.7.0.301")
-//// Import the facial expression detection model package.
-//    implementation("com.huawei.hms:ml-computer-vision-face-emotion-model:3.7.0.301")
-//// Import the facial feature detection model package.
-//    implementation("com.huawei.hms:ml-computer-vision-face-feature-model:3.7.0.301")
-//    // Import the 3D face detection model package.
-//    implementation("com.huawei.hms:ml-computer-vision-face-3d-model:3.7.0.301")
+    implementation(MLKIT_FACE_DETECTION)
     implementation(KOTLINX_COROUTINES)
     implementation(KOTLINX_COROUTINES_ANDROID)
     implementation(KOTLINX_COROUTINES_PLAY_SERVICES)

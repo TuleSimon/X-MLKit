@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":cameraXCompose")
+
+
 
 include(":facialRecognition")
 
@@ -21,4 +24,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "X-MLKIT"
-include(":app",":facialRecognition")
+include(":app",":facialRecognition",":cameraXCompose")

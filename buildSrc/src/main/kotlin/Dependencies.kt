@@ -61,6 +61,23 @@ object Dependencies {
 
   // COIL
   const val COIL_COMPOSE = "io.coil-kt:coil-compose:2.2.2"
+
+    //MLKIT
+    const val  MLKIT_FACE_DETECTION = "com.google.mlkit:face-detection:16.1.5"
+
+  //CAMERAX
+
+  const val CAMERA_CORE = "androidx.camera:camera-core:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_CAMERA2 = "androidx.camera:camera-camera2:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_LIFECYCLE = "androidx.camera:camera-lifecycle:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_VIDEO = "androidx.camera:camera-video:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_VIEW = "androidx.camera:camera-view:${Versions.CAMERAX_VERSION}"
+  const val CAMERA_EXTENSIONS = "androidx.camera:camera-extensions:${Versions.CAMERAX_VERSION}"
+
+
+  //ACCOMPANIST
+  const val ACCOMPANIST_PERMISSIONS =  "com.google.accompanist:accompanist-permissions:${Versions.ACCOMPANIST_PERMISSION_VERSION}"
+
 }
 
 // android test dependencies
@@ -79,6 +96,17 @@ fun DependencyHandler.Huawei() {
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_JK)
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_LATIN)
   implementation(Dependencies.HUAWEI_COMPUTER_VISION_OCR_CN)
+}
+
+
+// huawei
+fun DependencyHandler.Camerax() {
+  implementation(Dependencies.CAMERA_CORE)
+  implementation(Dependencies.CAMERA_CAMERA2)
+  implementation(Dependencies.CAMERA_EXTENSIONS)
+  implementation(Dependencies.CAMERA_VIDEO)
+  implementation(Dependencies.CAMERA_VIEW)
+  implementation(Dependencies.CAMERA_LIFECYCLE)
 }
 
 // huaweiFaceModels

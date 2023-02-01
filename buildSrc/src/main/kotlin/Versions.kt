@@ -8,4 +8,10 @@ object Versions {
   const val MIN_SDK_VERSION = 21
 
   const val HUAWEI_VERSION = "3.8.0.303"
+
+  //camerax
+  const val CAMERAX_VERSION = "1.1.0-beta01"
+
+  //
+  const val ACCOMPANIST_PERMISSION_VERSION = "0.29.1-alpha"
 }
