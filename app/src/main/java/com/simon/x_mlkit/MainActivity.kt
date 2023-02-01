@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContent {
             val succes = remember { mutableStateOf(false) }
             val imageUri = remember { mutableStateOf<Uri?>(null) }
