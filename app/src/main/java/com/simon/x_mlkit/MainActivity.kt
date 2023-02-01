@@ -22,6 +22,7 @@ import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
+import com.simon.cameraxcompose.CameraPreview
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
@@ -59,7 +60,7 @@ class MainActivity : ComponentActivity() {
                         }
 
                         if (state.status.isGranted) {
-
+                            CameraPreview(modifier = Modifier.fillMaxSize(),this@MainActivity)
                         }
                     }
                 }
