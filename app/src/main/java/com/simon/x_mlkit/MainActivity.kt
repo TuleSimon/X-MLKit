@@ -36,7 +36,6 @@ class MainActivity : ComponentActivity() {
             val imageUri = remember { mutableStateOf<Uri?>(null) }
 
             XMLKITTheme {
-                val context = LocalContext.current
 
                 LaunchedEffect(key1 = succes.value) {
                     if (succes.value) {

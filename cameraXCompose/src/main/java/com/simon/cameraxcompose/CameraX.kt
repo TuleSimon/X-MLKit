@@ -53,7 +53,6 @@ internal fun startCamera(previewView: PreviewView,
 
         // Select back camera as a default
         val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
-
         try {
             // Unbind use cases before rebinding
             cameraProvider.unbindAll()
@@ -61,6 +60,7 @@ internal fun startCamera(previewView: PreviewView,
             // Bind use cases to camera
             cameraProvider.bindToLifecycle(
                 lifecycleOwner, cameraSelector, preview)
+
 
         } catch(exc: Exception) {
             Log.e("XCAMERA", "Use case binding failed", exc)
