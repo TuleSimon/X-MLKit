@@ -1,14 +1,19 @@
 package com.simon.cameraxcompose
 
 import android.Manifest
+import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.os.Build
+import android.provider.MediaStore
 import android.util.Log
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
 import androidx.camera.core.ImageCapture.FLASH_MODE_ON
+import androidx.camera.core.ImageCaptureException
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -76,7 +81,7 @@ internal fun startCamera(previewView: PreviewView,
 }
 
 
-private fun takePhoto(imageCapture: ImageCapture) {
+private fun takePhoto(imageCapture: ImageCapture, context: Context:ContentResolver) {
     // Get a stable reference of the modifiable image capture use case
 //    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
 //        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
@@ -106,7 +111,7 @@ private fun takePhoto(imageCapture: ImageCapture) {
         ContextCompat.getMainExecutor(this),
         object : ImageCapture.OnImageSavedCallback {
             override fun onError(exc: ImageCaptureException) {
-                Log.e(TAG, "Photo capture failed: ${exc.message}", exc)
+                Log.e("CAPTURE", "Photo capture failed: ${exc.message}", exc)
             }
 
             override fun
