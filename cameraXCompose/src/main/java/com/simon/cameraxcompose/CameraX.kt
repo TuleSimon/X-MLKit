@@ -31,9 +31,9 @@ import java.util.concurrent.Executors
 
 @Composable
 fun CameraPreview(modifier: Modifier,
-                  lifecycleOwner: LifecycleOwner, state: MutableState<CameraXState>) {
-    val cameraExecutor: ExecutorService  = Executors.newSingleThreadExecutor()
+                   state: MutableState<CameraXState>) {
 
+    val cameraExecutor: ExecutorService  = Executors.newSingleThreadExecutor()
 
 
     AndroidView(
@@ -46,7 +46,7 @@ fun CameraPreview(modifier: Modifier,
             }
         },
         update = { previewView ->
-            startCamera(previewView,lifecycleOwner,state)
+            startCamera(previewView,state)
         }
     )
 }
@@ -74,7 +74,7 @@ internal fun startCamera(previewView: PreviewView,state: MutableState<CameraXSta
 
             // Bind use cases to camera
             cameraProvider.bindToLifecycle(
-                lifecycleOwner, cameraSelector, preview)
+                state.value.lifecycleOwner, cameraSelector, preview,state.value.imageCapture)
 
 
         } catch(exc: Exception) {
