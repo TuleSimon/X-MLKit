@@ -55,9 +55,11 @@ class MainActivity : ComponentActivity() {
 
                 if (state.status.isGranted) {
                   val cameraState = rememberCameraXState()
+
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
+
                   Button(
-                      modifier = Modifier.padding(15.dp).fillMaxWidth(),
+                      modifier = Modifier.align(Alignment.BottomCenter).padding(15.dp).fillMaxWidth(),
                       contentPadding = PaddingValues(20.dp),
                       onClick = { /*TODO*/}) {
                         Text(text = "CAPTURE PHOTO")
