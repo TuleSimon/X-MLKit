@@ -16,6 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import java.text.SimpleDateFormat
+import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -79,7 +81,7 @@ private fun takePhoto(imageCapture: ImageCapture) {
 //        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
 
     // Create time stamped name and MediaStore entry.
-    val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
+    val name = SimpleDateFormat(FILENAME_FORMAT, Locale.getDefault())
         .format(System.currentTimeMillis())
     val contentValues = ContentValues().apply {
         put(MediaStore.MediaColumns.DISPLAY_NAME, name)
