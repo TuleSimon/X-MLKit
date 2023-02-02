@@ -84,8 +84,8 @@ internal fun startCamera(previewView: PreviewView,state: MutableState<CameraXSta
 
 
 private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
-fun MutableState<CameraXState>.takePhoto(context: Context) {
-
+fun MutableState<CameraXState>.takePhoto() {
+    val context = this.value.context
     val imageCapture = this .value.imageCapture
     // Get a stable reference of the modifiable image capture use case
 //    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)

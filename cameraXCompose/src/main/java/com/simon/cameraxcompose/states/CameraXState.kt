@@ -1,5 +1,6 @@
 package com.simon.cameraxcompose.states
 
+import android.content.Context
 import androidx.camera.core.ImageCapture
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -25,4 +26,6 @@ fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
     value = value.copy(imageCapture = imageCapture)
 }
 
- data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner)
+ data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
+ val context: Context
+ )
