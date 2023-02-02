@@ -1,6 +1,7 @@
 package com.simon.cameraxcompose
 
 import android.Manifest
+import android.content.ContentValues
 import android.os.Build
 import android.util.Log
 import android.view.ViewGroup
