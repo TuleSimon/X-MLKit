@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
                   Button(
                       modifier = Modifier.align(Alignment.BottomCenter).padding(15.dp).fillMaxWidth(),
                       contentPadding = PaddingValues(20.dp),
-                      onClick = { cameraState.value.imageCapture.take }) {
+                      onClick = { cameraState.value.take }) {
                         Text(text = "CAPTURE PHOTO")
                         //
                       }
