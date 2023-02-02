@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.lifecycle.LifecycleOwner
 
@@ -16,8 +17,9 @@ fun rememberCameraXState(): MutableState<CameraXState> {
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val context = LocalContext.current
     val state =  remember{
-        mutableStateOf(CameraXState(imageCapture,lifecycleOwner))
+        mutableStateOf(CameraXState(imageCapture,lifecycleOwner,context))
     }
     return state
 }

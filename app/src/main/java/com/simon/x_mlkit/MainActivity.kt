@@ -25,6 +25,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
 import com.simon.cameraxcompose.states.rememberCameraXState
+import com.simon.cameraxcompose.takePhoto
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
 
@@ -61,7 +62,7 @@ class MainActivity : ComponentActivity() {
                   Button(
                       modifier = Modifier.align(Alignment.BottomCenter).padding(15.dp).fillMaxWidth(),
                       contentPadding = PaddingValues(20.dp),
-                      onClick = { cameraState.value.take }) {
+                      onClick = { cameraState.value.takePhoto() }) {
                         Text(text = "CAPTURE PHOTO")
                         //
                       }
