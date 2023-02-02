@@ -81,7 +81,7 @@ internal fun startCamera(previewView: PreviewView,
 }
 
 
-private fun takePhoto(imageCapture: ImageCapture, context: Context:ContentResolver) {
+private fun takePhoto(imageCapture: ImageCapture, context: Context) {
     // Get a stable reference of the modifiable image capture use case
 //    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
 //        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
@@ -99,7 +99,7 @@ private fun takePhoto(imageCapture: ImageCapture, context: Context:ContentResolv
 
     // Create output options object which contains file + metadata
     val outputOptions = ImageCapture.OutputFileOptions
-        .Builder(contentResolver,
+        .Builder(context.contentResolver,
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             contentValues)
         .build()
@@ -108,7 +108,7 @@ private fun takePhoto(imageCapture: ImageCapture, context: Context:ContentResolv
     // been taken
     imageCapture.takePicture(
         outputOptions,
-        ContextCompat.getMainExecutor(this),
+        ContextCompat.getMainExecutor(context),
         object : ImageCapture.OnImageSavedCallback {
             override fun onError(exc: ImageCaptureException) {
                 Log.e("CAPTURE", "Photo capture failed: ${exc.message}", exc)
@@ -117,8 +117,8 @@ private fun takePhoto(imageCapture: ImageCapture, context: Context:ContentResolv
             override fun
                     onImageSaved(output: ImageCapture.OutputFileResults){
                 val msg = "Photo capture succeeded: ${output.savedUri}"
-                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                Log.d(TAG, msg)
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                Log.d("SAVED", msg)
             }
         }
     )
