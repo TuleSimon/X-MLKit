@@ -18,10 +18,12 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.simon.cameraxcompose.states.CameraXState
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -29,8 +31,11 @@ import java.util.concurrent.Executors
 
 @Composable
 fun CameraPreview(modifier: Modifier,
-                  lifecycleOwner: LifecycleOwner) {
+                  lifecycleOwner: LifecycleOwner, state: MutableState<CameraXState>) {
     val cameraExecutor: ExecutorService  = Executors.newSingleThreadExecutor()
+
+
+
     AndroidView(
         modifier = modifier,
         factory = { context ->
@@ -41,14 +46,13 @@ fun CameraPreview(modifier: Modifier,
             }
         },
         update = { previewView ->
-            startCamera(previewView,lifecycleOwner)
+            startCamera(previewView,lifecycleOwner,state)
         }
     )
 }
 
 
-internal fun startCamera(previewView: PreviewView,
-                         lifecycleOwner: LifecycleOwner) {
+internal fun startCamera(previewView: PreviewView,state: MutableState<CameraXState>) {
     val cameraProviderFuture = ProcessCameraProvider.getInstance(previewView.context)
 
     cameraProviderFuture.addListener({

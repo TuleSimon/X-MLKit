@@ -5,11 +5,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.lifecycle.LifecycleOwner
 
 @Composable
 fun rememberCameraXState(): MutableState<CameraXState> {
 
     val imageCapture = ImageCapture.Builder().build()
+
 
     val state =  remember{
         mutableStateOf(CameraXState(imageCapture))
@@ -21,4 +23,4 @@ fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
     value = value.copy(imageCapture = imageCapture)
 }
 
- data class CameraXState(val imageCapture: ImageCapture)
+ data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner)
