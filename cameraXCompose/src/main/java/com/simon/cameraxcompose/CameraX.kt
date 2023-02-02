@@ -3,6 +3,7 @@ package com.simon.cameraxcompose
 import android.Manifest
 import android.os.Build
 import android.util.Log
+import android.util.Size
 import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -113,6 +114,13 @@ private fun takePhoto(previewView: PreviewView) {
     )
 }
 
+fun buildPreviewUseCase(resolution:Size): Preview {
+    return Preview.Builder()
+        // Set the preview resolution
+        .setTargetResolution(resolution)
+        // Set the rotation the preview frames should be received in. This should typically be the display rotation.
+        .build()
+}
 
 private val REQUIRED_PERMISSIONS =
     mutableListOf (
