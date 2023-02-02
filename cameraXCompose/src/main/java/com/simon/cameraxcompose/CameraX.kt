@@ -3,10 +3,10 @@ package com.simon.cameraxcompose
 import android.Manifest
 import android.os.Build
 import android.util.Log
-import android.util.Size
 import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCapture.FLASH_MODE_ON
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -74,7 +74,7 @@ internal fun startCamera(previewView: PreviewView,
 
 private fun takePhoto(previewView: PreviewView) {
     // Get a stable reference of the modifiable image capture use case
-    val imageCapture =ImageCapture.Builder(). imageCapture ?: return
+    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON).setJpegQuality() imageCapture ?: return
 
     // Create time stamped name and MediaStore entry.
     val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
@@ -114,13 +114,6 @@ private fun takePhoto(previewView: PreviewView) {
     )
 }
 
-fun buildPreviewUseCase(resolution:Size): Preview {
-    return Preview.Builder()
-        // Set the preview resolution
-        .setTargetResolution(resolution)
-        // Set the rotation the preview frames should be received in. This should typically be the display rotation.
-        .build()
-}
 
 private val REQUIRED_PERMISSIONS =
     mutableListOf (
