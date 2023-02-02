@@ -81,7 +81,7 @@ internal fun startCamera(previewView: PreviewView,
 }
 
 
-
+private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
 private fun takePhoto(imageCapture: ImageCapture, context: Context) {
     // Get a stable reference of the modifiable image capture use case
 //    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
