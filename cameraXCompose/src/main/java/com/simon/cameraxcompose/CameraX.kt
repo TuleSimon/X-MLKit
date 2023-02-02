@@ -73,10 +73,10 @@ internal fun startCamera(previewView: PreviewView,
 }
 
 
-private fun takePhoto(previewView: PreviewView) {
+private fun takePhoto(imageCapture: ImageCapture) {
     // Get a stable reference of the modifiable image capture use case
-    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
-        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
+//    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
+//        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
 
     // Create time stamped name and MediaStore entry.
     val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
