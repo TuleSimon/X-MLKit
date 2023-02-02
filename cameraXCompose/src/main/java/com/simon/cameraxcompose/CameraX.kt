@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
 import androidx.camera.core.ImageCapture.FLASH_MODE_ON
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
@@ -74,7 +75,8 @@ internal fun startCamera(previewView: PreviewView,
 
 private fun takePhoto(previewView: PreviewView) {
     // Get a stable reference of the modifiable image capture use case
-    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON).setJpegQuality() imageCapture ?: return
+    val imageCapture =ImageCapture.Builder().setFlashMode(FLASH_MODE_ON)
+        .setJpegQuality(CAPTURE_MODE_MAXIMIZE_QUALITY).build() ?: return
 
     // Create time stamped name and MediaStore entry.
     val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
