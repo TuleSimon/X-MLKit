@@ -2,8 +2,7 @@ package com.simon.cameraxcompose.states
 
 import android.content.Context
 import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCapture.FLASH_MODE_ON
-import androidx.camera.core.ImageCapture.FlashMode
+import androidx.camera.core.ImageCapture.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -37,10 +36,26 @@ fun MutableState<CameraXState>.switchToFrontCamera(imageCapture: ImageCapture  )
 fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
     value = value.copy(imageCapture = imageCapture)
 }
-
+/**
+ * see the flash mode to on, when user takes a picture, flash light does come on
+ */
 fun MutableState<CameraXState>.switchOnFlash( ){
     value.imageCapture.flashMode = FLASH_MODE_ON
+}
 
+/**
+ * see the flash mode to off, when user takes a picture, flash light doesn't come on
+ */
+fun MutableState<CameraXState>.switchOffFlash( ){
+    value.imageCapture.flashMode = FLASH_MODE_OFF
+}
+
+/**
+ * see the flash mode to auto, when user takes a picture, if environment is dark, flash comes on,
+ * else flash stays off
+ */
+fun MutableState<CameraXState>.flashAuto( ){
+    value.imageCapture.flashMode = FLASH_MODE_AUTO
 }
 
  data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
