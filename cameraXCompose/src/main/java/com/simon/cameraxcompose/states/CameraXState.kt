@@ -27,7 +27,7 @@ fun rememberCameraXState(): MutableState<CameraXState> {
 }
 
 fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
-    value = value.copy(imageCapture = imageCapture)
+    value.imageCapture.value =  imageCapture
 }
 
 fun MutableState<CameraXState>.switchToFrontCamera(imageCapture: ImageCapture  ){
