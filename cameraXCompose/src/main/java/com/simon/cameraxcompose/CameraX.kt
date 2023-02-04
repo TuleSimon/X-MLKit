@@ -111,7 +111,7 @@ fun CameraXState.takePhoto() {
 
     // Set up image capture listener, which is triggered after photo has
     // been taken
-    imageCapture.takePicture(
+    imageCapture.value.takePicture(
         outputOptions,
         ContextCompat.getMainExecutor(context),
         object : ImageCapture.OnImageSavedCallback {

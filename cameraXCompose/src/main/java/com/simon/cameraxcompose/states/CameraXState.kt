@@ -20,7 +20,7 @@ fun rememberCameraXState(): MutableState<CameraXState> {
     val lifecycleOwner = LocalLifecycleOwner.current
 
     val context = LocalContext.current
-    val state =  remember{
+    val state =  remember(imageCapture.value){
         mutableStateOf(CameraXState(imageCapture,lifecycleOwner,context))
     }
     return state
