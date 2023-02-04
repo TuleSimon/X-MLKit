@@ -14,7 +14,8 @@ import androidx.lifecycle.LifecycleOwner
 @Composable
 fun rememberCameraXState(): MutableState<CameraXState> {
 
-    val imageCapture = ImageCapture.Builder().build()
+    val imageCapture = remember{
+        mutableStateOf( ImageCapture.Builder().build())}
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
@@ -47,7 +48,7 @@ fun MutableState<CameraXState>.switchOnFlash( ){
  * see the flash mode to off, when user takes a picture, flash light doesn't come on
  */
 fun MutableState<CameraXState>.switchOffFlash( ){
-    value.imageCapture.flashMode = FLASH_MODE_OFF
+    value.imageCapture.value =value.imageCapture.value.also {  it.flashMode = FLASH_MODE_AUTO}
 }
 
 /**
@@ -55,14 +56,14 @@ fun MutableState<CameraXState>.switchOffFlash( ){
  * else flash stays off
  */
 fun MutableState<CameraXState>.flashAuto( ){
-    value.imageCapture.flashMode = FLASH_MODE_AUTO
+    value.imageCapture.value =value.imageCapture.value.also {  it.flashMode = FLASH_MODE_AUTO}
 }
 
- data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
+ data class CameraXState(val imageCapture: MutableState<ImageCapture>, val lifecycleOwner: LifecycleOwner,
  val context: Context
  ){
      fun getFlashMode(): CameraXFlashMode{
-         return when(imageCapture.flashMode){
+         return when(imageCapture.value.flashMode){
              FLASH_MODE_ON ->  CameraXFlashMode.ON
              FLASH_MODE_OFF ->  CameraXFlashMode.OFF
              else  ->  CameraXFlashMode.AUTO
