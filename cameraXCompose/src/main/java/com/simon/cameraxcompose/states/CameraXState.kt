@@ -38,7 +38,7 @@ fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
     value = value.copy(imageCapture = imageCapture)
 }
 
-fun MutableState<CameraXState>.switchOnFlash(imageCapture: ImageCapture  ){
+fun MutableState<CameraXState>.switchOnFlash( ){
     value.imageCapture.flashMode = FLASH_MODE_ON
 
 }

@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -81,6 +82,9 @@ class MainActivity : ComponentActivity() {
                             .background(colorScheme.primary, CircleShape).clip(CircleShape)
                             .aspectRatio(1f),
                         onClick = { cameraState.switchOnFlash() }) {
+
+                        Icon(painter = painterResource(R.drawable.baseline_flashlight_on_24), modifier = Modifier.size(15.dp),
+                        )
 
                     }
 
