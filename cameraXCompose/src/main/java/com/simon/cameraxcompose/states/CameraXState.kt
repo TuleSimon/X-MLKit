@@ -60,4 +60,16 @@ fun MutableState<CameraXState>.flashAuto( ){
 
  data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
  val context: Context
- )
+ ){
+     fun getFlashMode(): CameraXFlashMode{
+         return when(imageCapture.flashMode){
+             FLASH_MODE_ON ->  CameraXFlashMode.ON
+             FLASH_MODE_OFF ->  CameraXFlashMode.OFF
+             else  ->  CameraXFlashMode.AUTO
+         }
+     }
+ }
+
+enum class CameraXFlashMode( ){
+    ON,OFF,AUTO
+}

@@ -60,6 +60,7 @@ class MainActivity : ComponentActivity() {
 
                 if (state.status.isGranted) {
                   val cameraState = rememberCameraXState()
+                    val flashMode = cameraState.value.getFlashMode()
 
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
 
