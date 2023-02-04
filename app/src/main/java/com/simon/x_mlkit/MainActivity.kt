@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
                   Button(
                       modifier = Modifier.align(Alignment.BottomCenter)
-                          .wrapContentWidth()
+                          .fillMaxWidth(0.4f)
                           .border(2.dp,colorScheme.primary, CircleShape).padding(10.dp)
                           .background(colorScheme.primary, CircleShape).clip(CircleShape)
                           .aspectRatio(1f),
