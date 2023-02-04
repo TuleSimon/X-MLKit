@@ -31,7 +31,7 @@ fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
 }
 
 fun MutableState<CameraXState>.switchToFrontCamera(imageCapture: ImageCapture  ){
-    value = value.copy(imageCapture = imageCapture)
+//    value = value.copy(imageCapture = imageCapture)
 }
 
 fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
