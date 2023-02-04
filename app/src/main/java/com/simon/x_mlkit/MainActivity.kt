@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
@@ -27,6 +28,7 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
+import com.simon.cameraxcompose.states.CameraXFlashMode
 import com.simon.cameraxcompose.states.rememberCameraXState
 import com.simon.cameraxcompose.states.switchOnFlash
 import com.simon.cameraxcompose.takePhoto
@@ -83,8 +85,10 @@ class MainActivity : ComponentActivity() {
                             .aspectRatio(1f),
                         onClick = { cameraState.switchOnFlash() }) {
 
-                        Icon(painter = painterResource(R.drawable.baseline_flashlight_on_24), modifier = Modifier.size(20.dp),
-                        contentDescription = null)
+                        Icon(painter = painterResource(
+                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                        else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
+                        contentDescription = null, tint = Color.White)
 
                     }
 
