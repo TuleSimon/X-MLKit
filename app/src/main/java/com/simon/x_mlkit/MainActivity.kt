@@ -6,17 +6,19 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -25,6 +27,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
 import com.simon.cameraxcompose.states.rememberCameraXState
+import com.simon.cameraxcompose.states.switchOnFlash
 import com.simon.cameraxcompose.takePhoto
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
@@ -60,12 +63,27 @@ class MainActivity : ComponentActivity() {
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
 
                   Button(
-                      modifier = Modifier.align(Alignment.BottomCenter).padding(15.dp).fillMaxWidth(),
+                      modifier = Modifier.align(Alignment.BottomCenter)
+                          .wrapContentWidth()
+                          .border(2.dp,colorScheme.primary, CircleShape).padding(10.dp)
+                          .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                          .aspectRatio(1f),
                       contentPadding = PaddingValues(20.dp),
                       onClick = { cameraState.value.takePhoto() }) {
                         Text(text = "CAPTURE PHOTO")
                         //
                       }
+
+                    IconButton(
+                        modifier = Modifier.align(Alignment.BottomCenter)
+                            .wrapContentWidth()
+                            .border(2.dp,colorScheme.primary, CircleShape).padding(10.dp)
+                            .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                            .aspectRatio(1f),
+                        onClick = { cameraState.switchOnFlash() }) {
+
+                    }
+
                 }
               }
         }

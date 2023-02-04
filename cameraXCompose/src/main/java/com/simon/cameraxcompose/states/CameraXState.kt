@@ -40,6 +40,7 @@ fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
 
 fun MutableState<CameraXState>.switchOnFlash(imageCapture: ImageCapture  ){
     value.imageCapture.flashMode = FLASH_MODE_ON
+
 }
 
  data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
