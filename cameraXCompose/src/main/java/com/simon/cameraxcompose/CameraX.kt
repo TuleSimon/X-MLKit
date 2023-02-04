@@ -72,7 +72,7 @@ internal fun startCamera(previewView: PreviewView,state: MutableState<CameraXSta
 
             // Bind use cases to camera
             cameraProvider.bindToLifecycle(
-                state.value.lifecycleOwner, cameraSelector, preview,state.value.imageCapture.value)
+                state.value.lifecycleOwner, state.value.lensFacing.value, preview,state.value.imageCapture.value)
 
 
         } catch(exc: Exception) {

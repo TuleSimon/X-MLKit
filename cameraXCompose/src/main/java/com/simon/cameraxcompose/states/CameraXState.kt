@@ -33,9 +33,8 @@ fun rememberCameraXState(): MutableState<CameraXState> {
 }
 
  fun MutableState<CameraXState>.flipCamera(lensFacing:CameraSelector) {
-    if (lensFacing == CameraSelector.DEFAULT_FRONT_CAMERA) this.value.lensFacing = CameraSelector.DEFAULT_BACK_CAMERA;
-    else if (lensFacing == CameraSelector.DEFAULT_BACK_CAMERA) lensFacing = CameraSelector.DEFAULT_FRONT_CAMERA;
-    startCamera();
+    if (lensFacing == CameraSelector.DEFAULT_FRONT_CAMERA) this.value.lensFacing.value = CameraSelector.DEFAULT_BACK_CAMERA;
+    else if (lensFacing == CameraSelector.DEFAULT_BACK_CAMERA) this.value.lensFacing.value = CameraSelector.DEFAULT_FRONT_CAMERA;
 }
 fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
     value.imageCapture.value =  imageCapture
