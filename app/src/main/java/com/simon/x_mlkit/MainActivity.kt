@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
           }
         }
         // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding(), color = MaterialTheme.colorScheme.background) {
+        Surface(modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding().padding(10.dp), color = MaterialTheme.colorScheme.background) {
           Box(
               modifier = Modifier.fillMaxSize()) {
                 val state = requestCameraPermission()
@@ -62,6 +62,7 @@ class MainActivity : ComponentActivity() {
 
                 if (state.status.isGranted) {
                   val cameraState = rememberCameraXState()
+
                     val flashMode = cameraState.value.getFlashMode()
 
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
