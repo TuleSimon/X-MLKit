@@ -76,15 +76,15 @@ class MainActivity : ComponentActivity() {
                       }
 
                     IconButton(
-                        modifier = Modifier.align(Alignment.BottomCenter)
-                            .wrapContentWidth()
-                            .border(2.dp,colorScheme.primary, CircleShape).padding(10.dp)
+                        modifier = Modifier.align(Alignment.BottomStart)
+                            .width(15.dp)
+                            .padding(10.dp)
                             .background(colorScheme.primary, CircleShape).clip(CircleShape)
                             .aspectRatio(1f),
                         onClick = { cameraState.switchOnFlash() }) {
 
                         Icon(painter = painterResource(R.drawable.baseline_flashlight_on_24), modifier = Modifier.size(15.dp),
-                        )
+                        contentDescription = null)
 
                     }
 
