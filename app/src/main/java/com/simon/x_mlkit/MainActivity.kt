@@ -29,6 +29,7 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
 import com.simon.cameraxcompose.states.CameraXFlashMode
+import com.simon.cameraxcompose.states.getFlashMode
 import com.simon.cameraxcompose.states.rememberCameraXState
 import com.simon.cameraxcompose.states.switchOnFlash
 import com.simon.cameraxcompose.takePhoto
@@ -63,7 +64,7 @@ class MainActivity : ComponentActivity() {
                 if (state.status.isGranted) {
                   val cameraState = rememberCameraXState()
 
-                    val flashMode = cameraState.value.getFlashMode()
+                    val flashMode = cameraState.getFlashMode()
 
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
 
@@ -87,7 +88,7 @@ class MainActivity : ComponentActivity() {
                         onClick = { cameraState.switchOnFlash() }) {
 
                         Icon(painter = painterResource(
-                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                            if(flashMode.value == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
                         else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
                         contentDescription = null, tint = Color.White)
 

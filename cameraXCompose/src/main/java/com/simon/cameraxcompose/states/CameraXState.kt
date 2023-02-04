@@ -51,6 +51,14 @@ fun MutableState<CameraXState>.switchOffFlash( ){
     value.imageCapture.value =value.imageCapture.value.also {  it.flashMode = FLASH_MODE_OFF}
 }
 
+fun MutableState<CameraXState>.getFlashMode(): CameraXFlashMode{
+    return when(this.value.imageCapture.value.flashMode){
+        FLASH_MODE_ON ->  CameraXFlashMode.ON
+        FLASH_MODE_OFF ->  CameraXFlashMode.OFF
+        else  ->  CameraXFlashMode.AUTO
+    }
+}
+
 /**
  * see the flash mode to auto, when user takes a picture, if environment is dark, flash comes on,
  * else flash stays off
@@ -62,13 +70,7 @@ fun MutableState<CameraXState>.flashAuto( ){
  data class CameraXState(val imageCapture: MutableState<ImageCapture>, val lifecycleOwner: LifecycleOwner,
  val context: Context
  ){
-     fun getFlashMode(): CameraXFlashMode{
-         return when(imageCapture.value.flashMode){
-             FLASH_MODE_ON ->  CameraXFlashMode.ON
-             FLASH_MODE_OFF ->  CameraXFlashMode.OFF
-             else  ->  CameraXFlashMode.AUTO
-         }
-     }
+
  }
 
 enum class CameraXFlashMode( ){
