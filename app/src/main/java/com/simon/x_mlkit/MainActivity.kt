@@ -28,10 +28,7 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
-import com.simon.cameraxcompose.states.CameraXFlashMode
-import com.simon.cameraxcompose.states.getFlashMode
-import com.simon.cameraxcompose.states.rememberCameraXState
-import com.simon.cameraxcompose.states.switchOnFlash
+import com.simon.cameraxcompose.states.*
 import com.simon.cameraxcompose.takePhoto
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
@@ -85,10 +82,12 @@ class MainActivity : ComponentActivity() {
                             .width(25.dp)
                             .background(colorScheme.primary, CircleShape).clip(CircleShape)
                             .aspectRatio(1f),
-                        onClick = { cameraState.switchOnFlash() }) {
+                        onClick = {
+                            if(flashMode==CameraXFlashMode.OFF) cameraState.switchOnFlash()
+                        else cameraState.switchOffFlash()}) {
 
                         Icon(painter = painterResource(
-                            if(flashMode.value == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
                         else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
                         contentDescription = null, tint = Color.White)
 

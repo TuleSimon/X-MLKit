@@ -1,6 +1,8 @@
 package com.simon.cameraxcompose.states
 
 import android.content.Context
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.CameraSelector.LensFacing
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.ImageCapture.*
 import androidx.compose.runtime.Composable
@@ -14,6 +16,10 @@ import androidx.lifecycle.LifecycleOwner
 @Composable
 fun rememberCameraXState(): MutableState<CameraXState> {
 
+    val lensFacing = remember{
+        mutableStateOf( CameraSelector.DEFAULT_FRONT_CAMERA)
+    };
+
     val imageCapture = remember{
         mutableStateOf( ImageCapture.Builder().build())}
 
@@ -21,11 +27,16 @@ fun rememberCameraXState(): MutableState<CameraXState> {
 
     val context = LocalContext.current
     val state =  remember(imageCapture.value){
-        mutableStateOf(CameraXState(imageCapture,lifecycleOwner,context))
+        mutableStateOf(CameraXState(imageCapture,lifecycleOwner,lensFacing,context))
     }
     return state
 }
 
+ fun MutableState<CameraXState>.flipCamera(lensFacing:CameraSelector) {
+    if (lensFacing == CameraSelector.DEFAULT_FRONT_CAMERA) this.value.lensFacing = CameraSelector.DEFAULT_BACK_CAMERA;
+    else if (lensFacing == CameraSelector.DEFAULT_BACK_CAMERA) lensFacing = CameraSelector.DEFAULT_FRONT_CAMERA;
+    startCamera();
+}
 fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
     value.imageCapture.value =  imageCapture
 }
@@ -68,6 +79,7 @@ fun MutableState<CameraXState>.flashAuto( ){
 }
 
  data class CameraXState(val imageCapture: MutableState<ImageCapture>, val lifecycleOwner: LifecycleOwner,
+                         val lensFacing: MutableState<CameraSelector>,
  val context: Context
  ){
 
