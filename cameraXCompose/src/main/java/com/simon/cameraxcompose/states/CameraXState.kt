@@ -48,7 +48,7 @@ fun MutableState<CameraXState>.switchOnFlash( ){
  * see the flash mode to off, when user takes a picture, flash light doesn't come on
  */
 fun MutableState<CameraXState>.switchOffFlash( ){
-    value.imageCapture.value =value.imageCapture.value.also {  it.flashMode = FLASH_MODE_AUTO}
+    value.imageCapture.value =value.imageCapture.value.also {  it.flashMode = FLASH_MODE_OFF}
 }
 
 /**
