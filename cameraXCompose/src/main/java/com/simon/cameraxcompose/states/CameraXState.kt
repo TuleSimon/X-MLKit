@@ -35,7 +35,7 @@ fun MutableState<CameraXState>.switchToFrontCamera(imageCapture: ImageCapture  )
 }
 
 fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
-    value = value.copy(imageCapture = imageCapture)
+//    value = value.copy(imageCapture = imageCapture)
 }
 /**
  * see the flash mode to on, when user takes a picture, flash light does come on
