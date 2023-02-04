@@ -93,6 +93,22 @@ class MainActivity : ComponentActivity() {
 
                     }
 
+                    IconButton(
+                        modifier = Modifier.align(Alignment.BottomEnd)
+                            .width(25.dp)
+                            .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                            .aspectRatio(1f),
+                        onClick = {
+                            if(flashMode==CameraXFlashMode.OFF) cameraState.switchOnFlash()
+                            else cameraState.flipCamera()}) {
+
+                        Icon(painter = painterResource(
+                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                            else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
+                            contentDescription = null, tint = Color.White)
+
+                    }
+
                 }
               }
         }
