@@ -77,8 +77,7 @@ class MainActivity : ComponentActivity() {
 
                     IconButton(
                         modifier = Modifier.align(Alignment.BottomStart)
-                            .width(15.dp)
-                            .padding(10.dp)
+                            .width(20.dp)
                             .background(colorScheme.primary, CircleShape).clip(CircleShape)
                             .aspectRatio(1f),
                         onClick = { cameraState.switchOnFlash() }) {
