@@ -51,7 +51,7 @@ class MainActivity : ComponentActivity() {
           }
         }
         // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+        Surface(modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding(), color = MaterialTheme.colorScheme.background) {
           Box(
               modifier = Modifier.fillMaxSize()) {
                 val state = requestCameraPermission()
@@ -77,12 +77,12 @@ class MainActivity : ComponentActivity() {
 
                     IconButton(
                         modifier = Modifier.align(Alignment.BottomStart)
-                            .width(20.dp)
+                            .width(25.dp)
                             .background(colorScheme.primary, CircleShape).clip(CircleShape)
                             .aspectRatio(1f),
                         onClick = { cameraState.switchOnFlash() }) {
 
-                        Icon(painter = painterResource(R.drawable.baseline_flashlight_on_24), modifier = Modifier.size(15.dp),
+                        Icon(painter = painterResource(R.drawable.baseline_flashlight_on_24), modifier = Modifier.size(20.dp),
                         contentDescription = null)
 
                     }
