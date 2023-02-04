@@ -72,7 +72,7 @@ internal fun startCamera(previewView: PreviewView,state: MutableState<CameraXSta
 
             // Bind use cases to camera
             cameraProvider.bindToLifecycle(
-                state.value.lifecycleOwner, cameraSelector, preview,state.value.imageCapture)
+                state.value.lifecycleOwner, state.value.lensFacing.value, preview,state.value.imageCapture.value)
 
 
         } catch(exc: Exception) {
@@ -111,7 +111,7 @@ fun CameraXState.takePhoto() {
 
     // Set up image capture listener, which is triggered after photo has
     // been taken
-    imageCapture.takePicture(
+    imageCapture.value.takePicture(
         outputOptions,
         ContextCompat.getMainExecutor(context),
         object : ImageCapture.OnImageSavedCallback {

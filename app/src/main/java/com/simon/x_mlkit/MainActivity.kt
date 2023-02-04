@@ -6,17 +6,21 @@ import android.os.Bundle
 import android.provider.MediaStore
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
@@ -24,7 +28,7 @@ import com.google.accompanist.permissions.PermissionState
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
 import com.simon.cameraxcompose.CameraPreview
-import com.simon.cameraxcompose.states.rememberCameraXState
+import com.simon.cameraxcompose.states.*
 import com.simon.cameraxcompose.takePhoto
 import com.simon.x_mlkit.ui.theme.XMLKITTheme
 import java.io.File
@@ -47,7 +51,7 @@ class MainActivity : ComponentActivity() {
           }
         }
         // A surface container using the 'background' color from the theme
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+        Surface(modifier = Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding().padding(10.dp), color = MaterialTheme.colorScheme.background) {
           Box(
               modifier = Modifier.fillMaxSize()) {
                 val state = requestCameraPermission()
@@ -57,15 +61,54 @@ class MainActivity : ComponentActivity() {
                 if (state.status.isGranted) {
                   val cameraState = rememberCameraXState()
 
+                    val flashMode = cameraState.getFlashMode()
+
                   CameraPreview(modifier = Modifier.fillMaxSize(), cameraState)
 
                   Button(
-                      modifier = Modifier.align(Alignment.BottomCenter).padding(15.dp).fillMaxWidth(),
+                      modifier = Modifier.align(Alignment.BottomCenter)
+                          .fillMaxWidth(0.4f)
+                          .border(2.dp,colorScheme.primary, CircleShape).padding(10.dp)
+                          .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                          .aspectRatio(1f),
                       contentPadding = PaddingValues(20.dp),
                       onClick = { cameraState.value.takePhoto() }) {
                         Text(text = "CAPTURE PHOTO")
                         //
                       }
+
+                    IconButton(
+                        modifier = Modifier.align(Alignment.BottomStart)
+                            .width(25.dp)
+                            .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                            .aspectRatio(1f),
+                        onClick = {
+                            if(flashMode==CameraXFlashMode.OFF) cameraState.switchOnFlash()
+                        else cameraState.switchOffFlash()}) {
+
+                        Icon(painter = painterResource(
+                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                        else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
+                        contentDescription = null, tint = Color.White)
+
+                    }
+
+                    IconButton(
+                        modifier = Modifier.align(Alignment.BottomEnd)
+                            .width(25.dp)
+                            .background(colorScheme.primary, CircleShape).clip(CircleShape)
+                            .aspectRatio(1f),
+                        onClick = {
+                            if(flashMode==CameraXFlashMode.OFF) cameraState.switchOnFlash()
+                            else cameraState.flipCamera()}) {
+
+                        Icon(painter = painterResource(
+                            if(flashMode == CameraXFlashMode.ON) R.drawable.baseline_flashlight_on_24
+                            else R.drawable.baseline_flashlight_off_24), modifier = Modifier.size(20.dp),
+                            contentDescription = null, tint = Color.White)
+
+                    }
+
                 }
               }
         }
