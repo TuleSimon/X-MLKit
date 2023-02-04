@@ -2,6 +2,8 @@ package com.simon.cameraxcompose.states
 
 import android.content.Context
 import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCapture.FLASH_MODE_ON
+import androidx.camera.core.ImageCapture.FlashMode
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +28,18 @@ fun rememberCameraXState(): MutableState<CameraXState> {
 
 fun MutableState<CameraXState>.updateImageCapture(imageCapture: ImageCapture  ){
     value = value.copy(imageCapture = imageCapture)
+}
+
+fun MutableState<CameraXState>.switchToFrontCamera(imageCapture: ImageCapture  ){
+    value = value.copy(imageCapture = imageCapture)
+}
+
+fun MutableState<CameraXState>.switchToBackCamera(imageCapture: ImageCapture  ){
+    value = value.copy(imageCapture = imageCapture)
+}
+
+fun MutableState<CameraXState>.switchOnFlash(imageCapture: ImageCapture  ){
+    value.imageCapture.flashMode = FLASH_MODE_ON
 }
 
  data class CameraXState(val imageCapture: ImageCapture, val lifecycleOwner: LifecycleOwner,
